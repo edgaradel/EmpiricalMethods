@@ -1,6 +1,8 @@
 ---
 title: "Inflation"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2024-02-02"
 ---
 
@@ -8,11 +10,12 @@ date: "2024-02-02"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# AR model estimation and forecasting
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Consider the one-month US inflation rate. It's available in the Mishkin data in the Ecdat package. The rate is annualized and reported in percent with monthly observations from 1950 through 1990. The one-month inflation rate is the first column in the the Mishkin data. You can extract the first column, apply as-dot-ts() to convert it to a time series object, and assign the result to the variable inflation. Next, you can plot the time series and its sample ACF using the tsplot() and acf() commands as you did in earlier chapters. From the time series plot you see that the inflation series is usually positively-valued, and it is fairly persistent, with an extended period of high inflation beginning in the 1970s. From the ACF plot you see strong, positive, but decaying autocorrelation estimates from lags 1 through 24. The AR model may provide a good fit to these data.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+AR processes 
 
 ```{r Inflation}
 # AR processes: inflation rate
@@ -23,7 +26,7 @@ inflation <- as.ts(Mishkin[,1])
 
 ## Including Plots
 
-You can also embed plots, for example:
+The following plots
 
 ```{r pressure, echo=FALSE}
 ts.plot(inflation) ; acf(inflation)
